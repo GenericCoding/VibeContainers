@@ -224,6 +224,8 @@ else
     set -- "$@" \
         "DEVELOPMENT_TEAM=$team_id" \
         CODE_SIGN_STYLE=Automatic \
+        CODE_SIGNING_REQUIRED=YES \
+        "CODE_SIGN_IDENTITY=Apple Development" \
         "VIBECONTAINERS_BUNDLE_IDENTIFIER=$bundle_id"
 fi
 if [ -n "$certificate_path" ]; then
