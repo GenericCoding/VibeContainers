@@ -1,0 +1,39 @@
+.DS_Store
+._*
+__MACOSX/
+
+# Xcode and Swift build products
+xcuserdata/
+*.xcuserstate
+*.xccheckout
+*.xcscmblueprint
+DerivedData/
+build/
+.build/
+.lcBuild/
+.lcObj/
+*.xcarchive/
+*.xcresult/
+*.dSYM/
+*.dSYM.zip
+*.ipa
+
+# Signing credentials and local configuration
+*.p12
+*.pfx
+*.p8
+*.pem
+*.key
+*.cer
+*.mobileprovision
+*.provisionprofile
+*.password
+*.password.txt
+.env
+.env.*
+!.env.example
+Secrets.xcconfig
+*.local.xcconfig
+
+# Unreferenced duplicate of the asset-catalog icon
+/logo.png

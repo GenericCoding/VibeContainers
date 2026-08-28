@@ -1,0 +1,17 @@
+//
+//  Global.xcconfig
+//  LiveContainer
+//
+//  Created by Duy Tran on 2025/5/24.
+//
+
+// Select your Apple Developer team in Xcode or override DEVELOPMENT_TEAM at build time.
+DEVELOPMENT_TEAM[config=Debug] =
+DEVELOPMENT_TEAM[config=Release] =
+
+DEVELOPMENT_TEAM_SUFFIX[config=Debug] = .$(DEVELOPMENT_TEAM)
+DEVELOPMENT_TEAM_SUFFIX[config=Release] =
+
+APP_GROUP_SIDESTORE = group.com.SideStore.SideStore$(DEVELOPMENT_TEAM_SUFFIX)
+APP_GROUP_ALTSTORE = group.com.rileytestut.AltStore$(DEVELOPMENT_TEAM_SUFFIX)
+LIVECONTAINER_BUNDLE_IDENTIFIER = com.kdt.livecontainer$(DEVELOPMENT_TEAM_SUFFIX)

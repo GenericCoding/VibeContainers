@@ -1,0 +1,59 @@
+name: Compatibility Issue
+description: This is for compatibility issues with apps.
+labels: ["compatibility"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this Compatibility Issue report! Before you continue filling out the report, please **[read our FAQ](https://livecontainer.github.io/docs/faq) and [search in GitHub Issues](https://github.com/khanhduytran0/LiveContainer/labels/compatibility) for the app you are experiencing issues with** in case it has already been reported.
+        
+  - type: textarea
+    id: description
+    attributes:
+      label: Describe the issue
+      description: What is the problem? How did you discover it?
+      placeholder: Please be concise with your explaination.
+    validations:
+      required: true
+  - type: textarea
+    id: how-to-reproduce
+    attributes:
+      label: Instructions to reproduce
+      description: Please include consistent instructions to reproduce the problem to make it easier for us to fix it.
+    validations:
+      required: true
+  - type: input
+    id: app-version
+    attributes:
+      label: What version of LiveContainer and iOS are you using?
+      description: To retrieve LiveContainer version, go to LiveContainer settings, then scroll to the bottom of the page.
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: Verify steps
+      options:
+        - label: I downloaded LiveContainer from releases / actions section or LiveContainer's AltStore source.
+        - label: I have the latest LiveContainer.
+        - label: I installed LiveContainer through AltStore/SideStore/Impactor/iloader/TrollStore or I'm confident that I signed LiveContainer correctly with all required entitlements.
+        - label: I have tried to sideload the app normally through **free** sideloaders and I **did not** encounter the same problem
+    validations:
+      required: true
+  - type: textarea
+    id: app-name
+    attributes:
+      label: The name, version the app having issues
+      description: Please put the **exact** name and version of the app having issues here. If the app is open-source please also provide link to the repo.
+  - type: textarea
+    id: crash-log
+    attributes:
+      label: Crash Log
+      description: If a crash happened, please upload the crash log in iOS settings - Privacy Security - Analytics Improvements - Analytics Data - Search LiveContainer/LiveProcess. **Do not copy and paste.** Instead, please change .ips to .txt and upload it. If you are certain no crash report is produced, type "no crash report is produced".
+    validations:
+      required: true
+
+  - type: textarea
+    id: other-info
+    attributes:
+      label: Other
+      description: If you have any other info that might be useful, or if you found a workaround, please put it here.

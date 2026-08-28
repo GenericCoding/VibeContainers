@@ -1,0 +1,86 @@
+name: Update AltStore Source
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+
+jobs:
+  update-source:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: write
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v6
+
+    - name: Set up Python
+      uses: actions/setup-python@v6
+      with:
+        python-version: '3.x'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests
+
+    - name: Record job start time
+      id: job_start_time
+      run: echo "start_time=$(date +%s)" >> $GITHUB_OUTPUT
+
+    - name: Get latest commit info
+      id: commit_info
+      run: |
+        COMMIT_SHA=$(git rev-list -n 1 HEAD)
+        COMMIT_MSG=$(git log -1 --pretty=%s)
+        echo "commit_sha=$COMMIT_SHA" >> $GITHUB_ENV
+        echo "commit_msg=$COMMIT_MSG" >> $GITHUB_ENV
+
+    - name: Update AltStore source
+      id: update_source
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        python .github/update_json.py
+
+    - name: Update apps.json in Release 1.0
+      uses: softprops/action-gh-release@v3
+      with:
+        tag_name: "1.0"
+        files: |
+          .github/apps.json
+          .github/apps_ss_lc.json
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    - name: Calculate job duration
+      id: duration
+      if: always()
+      run: |
+        end_time=$(date +%s)
+        duration=$((end_time - ${{ steps.job_start_time.outputs.start_time }}))
+        echo "duration=$duration seconds" >> $GITHUB_OUTPUT
+
+    - name: Create job summary
+      run: |
+        if [[ "${{ steps.update_source.outputs.changes }}" == "true" ]]; then
+          echo "## Update Altstore Source Summary 🚀" >> $GITHUB_STEP_SUMMARY
+          echo "✅ Changes Detected and Applied" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "The apps.json file has been updated with the latest release information." >> $GITHUB_STEP_SUMMARY
+        else
+          echo "## Update Altstore Source Summary 🚀" >> $GITHUB_STEP_SUMMARY
+          echo "🔍 No Changes Detected" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          echo "The apps.json file is up to date. No changes were necessary." >> $GITHUB_STEP_SUMMARY
+        fi
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "🕐 Execution Time" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "This job took ${{ steps.duration.outputs.duration }} to complete." >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "📆 Next Scheduled Run" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "The next scheduled run will be tomorrow at midnight UTC." >> $GITHUB_STEP_SUMMARY

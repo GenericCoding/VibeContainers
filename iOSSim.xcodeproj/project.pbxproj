@@ -1,0 +1,855 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B2000007 /* LiveContainerShared.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B2000006 /* LiveContainerShared.framework */; };
+		B2000008 /* LiveContainerShared.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2000006 /* LiveContainerShared.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B2000014 /* ZSign.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2000013 /* ZSign.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		B2000016 /* OpenSSL.xcframework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B2000015 /* OpenSSL.xcframework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5000007 /* LiveContainerSwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5000005 /* LiveContainerSwiftUI.framework */; };
+		B5000008 /* LiveContainerSwiftUI.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B5000005 /* LiveContainerSwiftUI.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		B5000009 /* LiveProcess.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = B5000006 /* LiveProcess.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3000007 /* iOSSimExitActivity.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = C3000002 /* iOSSimExitActivity.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		C3000011 /* iOSSim/Runtime/GuestActivityShared.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3000010 /* iOSSim/Runtime/GuestActivityShared.swift */; };
+		D400000A /* HelloDyld.dylib in Embed Sample Tweak */ = {isa = PBXBuildFile; fileRef = D4000002 /* HelloDyld.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		F7000002 /* wallpaper.jpg in Resources */ = {isa = PBXBuildFile; fileRef = F7000001 /* wallpaper.jpg */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		B2000003 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2000001 /* LiveContainer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E1292BD52DCA3B660065E12D;
+			remoteInfo = LiveContainerShared;
+		};
+		B2000005 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2000001 /* LiveContainer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E1292BD62DCA3B660065E12D;
+			remoteInfo = LiveContainerShared;
+		};
+		B2000010 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2000001 /* LiveContainer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 174140532D9C0D6D00F3F928;
+			remoteInfo = ZSign;
+		};
+		B2000012 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2000001 /* LiveContainer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 174140542D9C0D6D00F3F928;
+			remoteInfo = ZSign;
+		};
+		B5000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2000001 /* LiveContainer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 17413FB42D9C0BAE00F3F928;
+			remoteInfo = LiveContainerSwiftUI;
+		};
+		B5000002 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2000001 /* LiveContainer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 17413FB52D9C0BAE00F3F928;
+			remoteInfo = LiveContainerSwiftUI;
+		};
+		B5000003 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2000001 /* LiveContainer.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = E1292AE42DCA3A660065E12D;
+			remoteInfo = LiveProcess;
+		};
+		B5000004 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B2000001 /* LiveContainer.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = E1292AE52DCA3A660065E12D;
+			remoteInfo = LiveProcess;
+		};
+		C3000005 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = C3000006;
+			remoteInfo = iOSSimExitActivity;
+		};
+		D4000001 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D4000006;
+			remoteInfo = HelloDyld;
+		};
+		E5000005 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A1000000 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E5000006;
+			remoteInfo = ContainerWidgetRunner;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		B2000009 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				B5000008 /* LiveContainerSwiftUI.framework in Embed Frameworks */,
+				B2000008 /* LiveContainerShared.framework in Embed Frameworks */,
+				B2000014 /* ZSign.dylib in Embed Frameworks */,
+				B2000016 /* OpenSSL.xcframework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3000008 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				B5000009 /* LiveProcess.appex in Embed App Extensions */,
+				C3000007 /* iOSSimExitActivity.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4000009 /* Embed Sample Tweak */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				D400000A /* HelloDyld.dylib in Embed Sample Tweak */,
+			);
+			name = "Embed Sample Tweak";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		A1000002 /* iOSSim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iOSSim.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B2000001 /* LiveContainer.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LiveContainer.xcodeproj; path = "LiveContainer-3.8.0/LiveContainer.xcodeproj"; sourceTree = "<group>"; };
+		B2000015 /* OpenSSL.xcframework */ = {isa = PBXFileReference; expectedSignature = "AppleDeveloperProgram:67RAULRX93:Marcin Krzyzanowski"; lastKnownFileType = wrapper.xcframework; name = OpenSSL.xcframework; path = "LiveContainer-3.8.0/OpenSSL/Frameworks/OpenSSL.xcframework"; sourceTree = SOURCE_ROOT; };
+		C3000002 /* iOSSimExitActivity.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = iOSSimExitActivity.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3000010 /* iOSSim/Runtime/GuestActivityShared.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSSim/Runtime/GuestActivityShared.swift; sourceTree = SOURCE_ROOT; };
+		D4000002 /* HelloDyld.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = HelloDyld.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5000002 /* ContainerWidgetRunner.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ContainerWidgetRunner.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		F7000001 /* wallpaper.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = wallpaper.jpg; sourceTree = SOURCE_ROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		A1000003 /* iOSSim */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = iOSSim;
+			sourceTree = "<group>";
+		};
+		C3000003 /* iOSSimExitActivity */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = iOSSimExitActivity;
+			sourceTree = "<group>";
+		};
+		D4000003 /* HelloDyld */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = HelloDyld;
+			sourceTree = "<group>";
+		};
+		E5000003 /* ContainerWidgetRunner */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ContainerWidgetRunner;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1000005 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5000007 /* LiveContainerSwiftUI.framework in Frameworks */,
+				B2000007 /* LiveContainerShared.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C3000009 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4000008 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5000007 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8FF2BE86303009A400D91916 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				C3000010 /* iOSSim/Runtime/GuestActivityShared.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
+		A1000001 = {
+			isa = PBXGroup;
+			children = (
+				F7000001 /* wallpaper.jpg */,
+				A1000003 /* iOSSim */,
+				C3000003 /* iOSSimExitActivity */,
+				E5000003 /* ContainerWidgetRunner */,
+				D4000003 /* HelloDyld */,
+				B2000001 /* LiveContainer.xcodeproj */,
+				B2000015 /* OpenSSL.xcframework */,
+				A1000004 /* Products */,
+				8FF2BE86303009A400D91916 /* Recovered References */,
+			);
+			sourceTree = "<group>";
+		};
+		A1000004 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A1000002 /* iOSSim.app */,
+				C3000002 /* iOSSimExitActivity.appex */,
+				E5000002 /* ContainerWidgetRunner.appex */,
+				D4000002 /* HelloDyld.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B2000002 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5000005 /* LiveContainerSwiftUI.framework */,
+				B2000013 /* ZSign.dylib */,
+				B5000006 /* LiveProcess.appex */,
+				B2000006 /* LiveContainerShared.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A1000006 /* iOSSim */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1000010 /* Build configuration list for PBXNativeTarget "iOSSim" */;
+			buildPhases = (
+				A1000007 /* Sources */,
+				A1000005 /* Frameworks */,
+				A1000008 /* Resources */,
+				E500000B /* Copy Widget Runner Profile */,
+				B2000009 /* Embed Frameworks */,
+				C3000008 /* Embed App Extensions */,
+				D4000009 /* Embed Sample Tweak */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B500000A /* PBXTargetDependency */,
+				B500000B /* PBXTargetDependency */,
+				B2000004 /* PBXTargetDependency */,
+				B2000011 /* PBXTargetDependency */,
+				C3000004 /* PBXTargetDependency */,
+				E5000004 /* PBXTargetDependency */,
+				D4000004 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				A1000003 /* iOSSim */,
+			);
+			name = iOSSim;
+			productName = iOSSim;
+			productReference = A1000002 /* iOSSim.app */;
+			productType = "com.apple.product-type.application";
+		};
+		C3000006 /* iOSSimExitActivity */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = C3000012 /* Build configuration list for PBXNativeTarget "iOSSimExitActivity" */;
+			buildPhases = (
+				C300000B /* Sources */,
+				C3000009 /* Frameworks */,
+				C300000A /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				C3000003 /* iOSSimExitActivity */,
+			);
+			name = iOSSimExitActivity;
+			productName = iOSSimExitActivity;
+			productReference = C3000002 /* iOSSimExitActivity.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		D4000006 /* HelloDyld */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D4000010 /* Build configuration list for PBXNativeTarget "HelloDyld" */;
+			buildPhases = (
+				D4000007 /* Sources */,
+				D4000008 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				D4000003 /* HelloDyld */,
+			);
+			name = HelloDyld;
+			productName = HelloDyld;
+			productReference = D4000002 /* HelloDyld.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+		E5000006 /* ContainerWidgetRunner */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E5000012 /* Build configuration list for PBXNativeTarget "ContainerWidgetRunner" */;
+			buildPhases = (
+				E5000009 /* Sources */,
+				E5000007 /* Frameworks */,
+				E5000008 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				E5000003 /* ContainerWidgetRunner */,
+			);
+			name = ContainerWidgetRunner;
+			productName = ContainerWidgetRunner;
+			productReference = E5000002 /* ContainerWidgetRunner.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A1000000 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					A1000006 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					C3000006 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					D4000006 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+					E5000006 = {
+						CreatedOnToolsVersion = 26.0;
+					};
+				};
+			};
+			buildConfigurationList = A1000009 /* Build configuration list for PBXProject "iOSSim" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = A1000001;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A1000004 /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = B2000002 /* Products */;
+					ProjectRef = B2000001 /* LiveContainer.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				A1000006 /* iOSSim */,
+				C3000006 /* iOSSimExitActivity */,
+				E5000006 /* ContainerWidgetRunner */,
+				D4000006 /* HelloDyld */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		B2000006 /* LiveContainerShared.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LiveContainerShared.framework;
+			remoteRef = B2000005 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B2000013 /* ZSign.dylib */ = {
+			isa = PBXReferenceProxy;
+			fileType = "compiled.mach-o.dylib";
+			path = ZSign.dylib;
+			remoteRef = B2000012 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5000005 /* LiveContainerSwiftUI.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LiveContainerSwiftUI.framework;
+			remoteRef = B5000002 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		B5000006 /* LiveProcess.appex */ = {
+			isa = PBXReferenceProxy;
+			fileType = "wrapper.app-extension";
+			path = LiveProcess.appex;
+			remoteRef = B5000004 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A1000008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F7000002 /* wallpaper.jpg in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C300000A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5000008 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		E500000B /* Copy Widget Runner Profile */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(BUILT_PRODUCTS_DIR)/ContainerWidgetRunner.appex/embedded.mobileprovision",
+			);
+			name = "Copy Widget Runner Profile";
+			outputPaths = (
+				"$(TARGET_BUILD_DIR)/$(UNLOCALIZED_RESOURCES_FOLDER_PATH)/ContainerWidgetRunner.mobileprovision",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\nrunner_profile=\"${BUILT_PRODUCTS_DIR}/ContainerWidgetRunner.appex/embedded.mobileprovision\"\ndestination=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ContainerWidgetRunner.mobileprovision\"\nif [ ! -f \"${runner_profile}\" ]; then\n    if [ \"${CODE_SIGNING_ALLOWED:-YES}\" = \"NO\" ]; then\n        echo \"Skipping widget-runner profile in unsigned build\"\n        exit 0\n    fi\n    echo \"error: signed ContainerWidgetRunner product has no embedded.mobileprovision\" >&2\n    exit 1\nfi\n/usr/bin/install -m 0644 \"${runner_profile}\" \"${destination}\"\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A1000007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		C300000B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C3000011 /* iOSSim/Runtime/GuestActivityShared.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D4000007 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E5000009 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		B2000004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LiveContainerShared;
+			targetProxy = B2000003 /* PBXContainerItemProxy */;
+		};
+		B2000011 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = ZSign;
+			targetProxy = B2000010 /* PBXContainerItemProxy */;
+		};
+		B500000A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LiveContainerSwiftUI;
+			targetProxy = B5000001 /* PBXContainerItemProxy */;
+		};
+		B500000B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LiveProcess;
+			targetProxy = B5000003 /* PBXContainerItemProxy */;
+		};
+		C3000004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = C3000006 /* iOSSimExitActivity */;
+			targetProxy = C3000005 /* PBXContainerItemProxy */;
+		};
+		D4000004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D4000006 /* HelloDyld */;
+			targetProxy = D4000001 /* PBXContainerItemProxy */;
+		};
+		E5000004 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E5000006 /* ContainerWidgetRunner */;
+			targetProxy = E5000005 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		A1000011 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IOSSIM_APP_BUNDLE_IDENTIFIER = com.iossim.demo;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		A1000012 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				IOSSIM_APP_BUNDLE_IDENTIFIER = com.iossim.demo;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A1000013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "iOSSim-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A1000014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "iOSSim-Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		C3000013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = arm64;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "iOSSimExitActivity-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers.SetupUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		C3000014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = arm64;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "iOSSimExitActivity-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers.SetupUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		D4000013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_DYLIB_INSTALL_NAME = "@loader_path/../../Tweaks/$(EXECUTABLE_NAME)";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		D4000014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = arm64;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_DYLIB_INSTALL_NAME = "@loader_path/../../Tweaks/$(EXECUTABLE_NAME)";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		E5000013 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = arm64;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_DEBUG_DYLIB = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "ContainerWidgetRunner-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers.WidgetRunner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		E5000014 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				ARCHS = arm64;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_DEBUG_DYLIB = NO;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = "ContainerWidgetRunner-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers.WidgetRunner;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A1000009 /* Build configuration list for PBXProject "iOSSim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000011 /* Debug */,
+				A1000012 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1000010 /* Build configuration list for PBXNativeTarget "iOSSim" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1000013 /* Debug */,
+				A1000014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		C3000012 /* Build configuration list for PBXNativeTarget "iOSSimExitActivity" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				C3000013 /* Debug */,
+				C3000014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D4000010 /* Build configuration list for PBXNativeTarget "HelloDyld" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4000013 /* Debug */,
+				D4000014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E5000012 /* Build configuration list for PBXNativeTarget "ContainerWidgetRunner" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E5000013 /* Debug */,
+				E5000014 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A1000000 /* Project object */;
+}
