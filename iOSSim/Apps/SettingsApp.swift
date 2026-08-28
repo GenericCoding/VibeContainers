@@ -6,6 +6,11 @@ import UniformTypeIdentifiers
 private func IOSSimProbeJIT() -> Int32
 
 struct SettingsApp: View {
+    /// iOS 18 file providers can surface PKCS#12 files as dynamic data types
+    /// instead of `UTType.pkcs12`. Keep the picker permissive, then enforce
+    /// the supported extensions before reading the selected file.
+    private static let certificateContentTypes: [UTType] = [.data]
+
     private enum Page: String, Identifiable {
         case about, controller, customization, jit, multitasking, tweaks, webServer, packages
         var id: String { rawValue }
@@ -91,21 +96,6 @@ struct SettingsApp: View {
         .onAppear { runJITProbe(haptic: false) }
         .onAppIntent(.settings) { intent in
             detail = intent == .settingsPackages ? .packages : .customization
-        }
-        .fileImporter(
-            isPresented: $importingCertificate,
-            allowedContentTypes: [
-                UTType(filenameExtension: "p12") ?? .data,
-                UTType(filenameExtension: "pfx") ?? .data
-            ]
-        ) { result in
-            selectCertificate(result)
-        }
-        .fileImporter(
-            isPresented: $importingWallpaper,
-            allowedContentTypes: WallpaperStore.supportedContentTypes
-        ) { result in
-            selectWallpaper(result)
         }
         .alert("Certificate Password", isPresented: $showingCertificatePassword) {
             SecureField("Password (may be empty)", text: $certificatePassword)
@@ -444,7 +434,7 @@ struct SettingsApp: View {
                     }
                 }
                 ListRow(showsSeparator: JITLessSigner.isConfigured,
-                        action: certificateBusy ? nil : { importingCertificate = true }) {
+                        action: certificateBusy ? nil : beginCertificateImport) {
                     Label(JITLessSigner.isConfigured ? "Replace Certificate" : "Import Certificate",
                           systemImage: "square.and.arrow.down.fill")
                         .font(.system(size: 17, weight: .semibold))
@@ -452,6 +442,11 @@ struct SettingsApp: View {
                 } trailing: {
                     if certificateBusy { ProgressView() }
                 }
+                .fileImporter(
+                    isPresented: $importingCertificate,
+                    allowedContentTypes: Self.certificateContentTypes,
+                    onCompletion: selectCertificate
+                )
                 if JITLessSigner.isConfigured {
                     ListRow(showsSeparator: false, action: removeCertificate) {
                         Label("Remove Certificate", systemImage: "trash")
@@ -505,8 +500,25 @@ struct SettingsApp: View {
         containerLaunchAvailable ? SysColor.green : jitProbe.color
     }
 
+    private func beginCertificateImport() {
+        certificateNotice = nil
+        certificateNoticeIsError = false
+        importingCertificate = true
+    }
+
     private func selectCertificate(_ result: Result<URL, Error>) {
-        guard case .success(let url) = result else { return }
+        guard case .success(let url) = result else {
+            if case .failure(let error) = result {
+                let cocoaError = error as NSError
+                if cocoaError.domain == NSCocoaErrorDomain,
+                   cocoaError.code == NSUserCancelledError {
+                    return
+                }
+                certificateNotice = "Could not open the certificate picker: \(error.localizedDescription)"
+                certificateNoticeIsError = true
+            }
+            return
+        }
         let ext = url.pathExtension.lowercased()
         guard ext == "p12" || ext == "pfx" else {
             certificateNotice = "Choose a PKCS#12 .p12 or .pfx identity."
@@ -519,7 +531,13 @@ struct SettingsApp: View {
         do {
             pendingCertificate = try Data(contentsOf: url)
             certificatePassword = ""
-            showingCertificatePassword = true
+            // The iOS 18 document browser can still be dismissing when its
+            // completion arrives. Presenting an alert in that same update is
+            // dropped, so move the password prompt to the next actor turn.
+            Task { @MainActor in
+                await Task.yield()
+                showingCertificatePassword = true
+            }
         } catch {
             certificateNotice = "Could not read the certificate: \(error.localizedDescription)"
             certificateNoticeIsError = true
@@ -733,6 +751,11 @@ struct SettingsApp: View {
                 } trailing: {
                     if wallpaperBusy { ProgressView() }
                 }
+                .fileImporter(
+                    isPresented: $importingWallpaper,
+                    allowedContentTypes: WallpaperStore.supportedContentTypes,
+                    onCompletion: selectWallpaper
+                )
 
                 if let selected = wallpapers.selected {
                     ListRow(separatorInset: 16, action: { removeWallpaper(selected) }) {
