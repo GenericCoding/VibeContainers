@@ -7,4 +7,4 @@
 
 #include "Global.xcconfig"
 
-PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers.BroadcastUpload
+PRODUCT_BUNDLE_IDENTIFIER = $(VIBECONTAINERS_BUNDLE_IDENTIFIER).BroadcastUpload

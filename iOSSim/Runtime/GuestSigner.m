@@ -28,7 +28,6 @@ static NSString *const IOSSimCertificateDataKey = @"LCCertificateData";
 static NSString *const IOSSimCertificatePasswordKey = @"LCCertificatePassword";
 static NSString *const IOSSimCertificateTeamIDKey = @"IOSSimCertificateTeamID";
 static NSString *const IOSSimCertificateUpdateDateKey = @"LCCertificateUpdateDate";
-static NSString *const IOSSimWidgetRunnerBundleIdentifier = @"com.genericcoding.vibecontainers.WidgetRunner";
 static NSString *const IOSSimWidgetRunnerBundleName = @"IOSSimWidgetRunner.appex";
 static NSString *const IOSSimWidgetRunnerProfileName = @"ContainerWidgetRunner";
 static NSString *const IOSSimWidgetSourceIdentifierKey = @"IOSSimSourceWidgetBundleIdentifier";
@@ -39,6 +38,12 @@ static NSString *const IOSSimWidgetModuleFormatVersionKey = @"IOSSimWidgetModule
 static NSInteger const IOSSimWidgetModuleFormatVersion = 2;
 static NSString *const IOSSimWidgetModuleStagePrefix = @".IOSSimWidgetModule-stage-";
 static NSString *const IOSSimWidgetModuleBackupPrefix = @".IOSSimWidgetModule-backup-";
+
+static NSString *IOSSimWidgetRunnerBundleIdentifier(void) {
+    NSString *hostIdentifier = NSBundle.mainBundle.bundleIdentifier;
+    if (!hostIdentifier.length) hostIdentifier = @"com.genericcoding.vibecontainers";
+    return [hostIdentifier stringByAppendingString:@".WidgetRunner"];
+}
 
 @interface IOSSimLoadedWidgetModuleRecord : NSObject
 @property(nonatomic, assign) void *handle;
@@ -443,7 +448,7 @@ static BOOL IOSSimRunnerMatchesSource(NSString *appRoot,
         return NO;
     }
     if (![runnerInfo[@"CFBundleIdentifier"] isEqualToString:
-            IOSSimWidgetRunnerBundleIdentifier]) {
+            IOSSimWidgetRunnerBundleIdentifier()]) {
         if (error) *error = IOSSimSigningError(30,
             @"The staged widget runner has the wrong provisioned bundle identifier.");
         return NO;
@@ -526,7 +531,7 @@ static NSData *IOSSimWidgetRunnerProfile(NSError **error) {
         stringForKey:IOSSimCertificateTeamIDKey];
     NSString *expectedApplicationIdentifier = storedTeam.length
         ? [NSString stringWithFormat:@"%@.%@", storedTeam,
-                                     IOSSimWidgetRunnerBundleIdentifier]
+                                     IOSSimWidgetRunnerBundleIdentifier()]
         : nil;
     if (!storedTeam.length || ![teams containsObject:storedTeam]) {
         if (error) *error = IOSSimSigningError(45, [NSString stringWithFormat:
@@ -1086,7 +1091,7 @@ static NSError *IOSSimValidateProvisionedMainSignature(NSString *path,
             }
             validationFailure = IOSSimValidateProvisionedMainSlice(header, fileBase,
                 (uint64_t)status.st_size, infoData, codeResources,
-                IOSSimWidgetRunnerBundleIdentifier, expectedTeam);
+                IOSSimWidgetRunnerBundleIdentifier(), expectedTeam);
         });
     if (checked && !validationFailure) return nil;
     NSString *detail = validationFailure ?: parseError
@@ -1133,7 +1138,7 @@ static NSError *IOSSimRegisterWidgetRunner(NSURL *runnerURL) {
     for (NSUInteger attempt = 0; attempt < 20; attempt++) {
         id proxy = ((id (*)(id, SEL, id))objc_msgSend)(proxyClass,
                                                        proxyForIdentifier,
-                                                       IOSSimWidgetRunnerBundleIdentifier);
+                                                       IOSSimWidgetRunnerBundleIdentifier());
         SEL bundleURLSelector = NSSelectorFromString(@"bundleURL");
         if ([proxy respondsToSelector:bundleURLSelector]) {
             id value = ((id (*)(id, SEL))objc_msgSend)(proxy, bundleURLSelector);
@@ -1147,7 +1152,7 @@ static NSError *IOSSimRegisterWidgetRunner(NSURL *runnerURL) {
     return IOSSimSigningError(54, [NSString stringWithFormat:
         @"PlugInKit registration %@, but LaunchServices resolved '%@' to %@ instead of %@.",
         registered ? @"returned YES" : @"returned NO",
-        IOSSimWidgetRunnerBundleIdentifier,
+        IOSSimWidgetRunnerBundleIdentifier(),
         actualURL.path ?: @"no record", runnerURL.path]);
 #endif
 }
@@ -2889,7 +2894,7 @@ static NSError *IOSSimStageWidgetRunner(Class signerClass,
     }
 
     NSMutableDictionary *runnerInfo = [IOSSimWidgetInfo(sourceExtensionPath) mutableCopy];
-    runnerInfo[@"CFBundleIdentifier"] = IOSSimWidgetRunnerBundleIdentifier;
+    runnerInfo[@"CFBundleIdentifier"] = IOSSimWidgetRunnerBundleIdentifier();
     [runnerInfo addEntriesFromDictionary:sourceMetadata];
     NSError *serializationError = nil;
     NSData *infoData = [NSPropertyListSerialization dataWithPropertyList:runnerInfo
@@ -2956,7 +2961,7 @@ static NSError *IOSSimStageWidgetRunner(Class signerClass,
             fileError.localizedDescription]);
     }
     signingError = IOSSimSignProvisionedMain(signerClass, mainPath,
-                                              IOSSimWidgetRunnerBundleIdentifier,
+                                              IOSSimWidgetRunnerBundleIdentifier(),
                                               certificate, password, profile,
                                               infoData, codeResources);
     if (signingError) {
@@ -4031,7 +4036,7 @@ char *IOSSimPrepareWidgetExtensionForHosting(const char *appBundlePath,
         appPath, extensionPath, existingRunnerURL, YES);
     if (!existingRunnerError) {
         NSLog(@"[WidgetRunner] Reusing registered %@ for source %@ at %@",
-              IOSSimWidgetRunnerBundleIdentifier,
+              IOSSimWidgetRunnerBundleIdentifier(),
               IOSSimWidgetInfo(extensionPath)[@"CFBundleIdentifier"] ?: @"unknown",
               existingRunnerURL.path);
         return NULL;
@@ -4067,7 +4072,7 @@ char *IOSSimPrepareWidgetExtensionForHosting(const char *appBundlePath,
         return IOSSimSignerError(runnerError.localizedDescription);
     }
     NSLog(@"[WidgetRunner] Prepared and registered %@ for source %@ at %@",
-          IOSSimWidgetRunnerBundleIdentifier,
+          IOSSimWidgetRunnerBundleIdentifier(),
           IOSSimWidgetInfo(extensionPath)[@"CFBundleIdentifier"] ?: @"unknown",
           runnerURL.path);
 #endif

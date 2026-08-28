@@ -44,7 +44,9 @@ final class ContainerWidgetStore {
     private let widgetExtensionPoints: Set<String> = [
         "com.apple.widgetkit-extension"
     ]
-    private let provisionedRunnerBundleIdentifier = "com.genericcoding.vibecontainers.WidgetRunner"
+    private var provisionedRunnerBundleIdentifier: String {
+        "\(Bundle.main.bundleIdentifier ?? "com.genericcoding.vibecontainers").WidgetRunner"
+    }
 
     private init() {
         enabledIDs = Set(UserDefaults.standard.stringArray(forKey: enabledKey) ?? [])

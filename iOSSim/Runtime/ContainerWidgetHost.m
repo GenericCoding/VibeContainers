@@ -11,11 +11,16 @@
 
 static NSString *const IOSSimWidgetStatusNotification = @"IOSSimContainerWidgetHostStatus";
 static NSString *const IOSSimWidgetLaunchNotification = @"IOSSimContainerWidgetRequestedLaunch";
-static NSString *const IOSSimWidgetRunnerBundleIdentifier = @"com.genericcoding.vibecontainers.WidgetRunner";
 static NSString *const IOSSimWidgetRunnerBundleName = @"IOSSimWidgetRunner.appex";
 static NSString *const IOSSimWidgetSourceIdentifierKey = @"IOSSimSourceWidgetBundleIdentifier";
 static NSString *const IOSSimWidgetSourceRelativePathKey = @"IOSSimSourceWidgetRelativePath";
 static NSString *IOSSimWidgetLastError;
+
+static NSString *IOSSimWidgetRunnerBundleIdentifier(void) {
+    NSString *hostIdentifier = NSBundle.mainBundle.bundleIdentifier;
+    if (!hostIdentifier.length) hostIdentifier = @"com.genericcoding.vibecontainers";
+    return [hostIdentifier stringByAppendingString:@".WidgetRunner"];
+}
 
 static id SendId0(id receiver, SEL selector) {
     return ((id (*)(id, SEL))objc_msgSend)(receiver, selector);
@@ -189,7 +194,7 @@ static void IOSSimRegisterWidgetHost(IOSSimContainerWidgetBridgeController *cont
     NSDictionary *runnerInfo = [NSDictionary dictionaryWithContentsOfURL:
         [runnerURL URLByAppendingPathComponent:@"Info.plist"]];
     if (![runnerInfo[@"CFBundleIdentifier"] isEqualToString:
-            IOSSimWidgetRunnerBundleIdentifier]) {
+            IOSSimWidgetRunnerBundleIdentifier()]) {
         return @"The widget runner exists, but its provisioned bundle identifier is invalid.";
     }
     if (![runnerInfo[IOSSimWidgetSourceIdentifierKey]
@@ -198,7 +203,7 @@ static void IOSSimRegisterWidgetHost(IOSSimContainerWidgetBridgeController *cont
             isEqualToString:relativeSourcePath]) {
         return @"The active widget runner was prepared for a different source extension. Use Sign & Retry to switch it atomically.";
     }
-    self.extensionBundleIdentifier = IOSSimWidgetRunnerBundleIdentifier;
+    self.extensionBundleIdentifier = IOSSimWidgetRunnerBundleIdentifier();
     self.extensionURL = runnerURL;
     return nil;
 #endif

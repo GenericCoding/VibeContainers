@@ -90,6 +90,25 @@ enum JITLessSigner {
         UserDefaults.standard.string(forKey: "IOSSimCertificateTeamID")
     }
 
+    private static var bundledCertificateURL: URL? {
+        Bundle.main.url(forResource: "VibeContainersSigner", withExtension: "p12")
+    }
+
+    static var hasBundledCertificate: Bool {
+        bundledCertificateURL != nil
+    }
+
+    static func bundledCertificate() throws -> Data {
+        guard let url = bundledCertificateURL else {
+            throw Failure(message: "This build does not contain a bundled PKCS#12 identity.")
+        }
+        do {
+            return try Data(contentsOf: url, options: .mappedIfSafe)
+        } catch {
+            throw Failure(message: "The bundled identity could not be read: \(error.localizedDescription)")
+        }
+    }
+
     static func configure(certificate: Data, password: String) async throws {
         let message = await performOperation {
             certificate.withUnsafeBytes { bytes -> String? in

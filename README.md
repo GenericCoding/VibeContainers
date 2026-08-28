@@ -73,6 +73,55 @@ xcodebuild \
 
 Build products are written to Xcode's Derived Data directory by default.
 
+## Build an IPA with the script
+
+The script selects a unique bundle namespace, prepares OpenSSL, creates signing
+profiles when Xcode permits it, verifies the signed app, and packages an IPA:
+
+```sh
+./scripts/build_ipa.sh \
+  --team-id YOUR_TEAM_ID \
+  --developer-dir /Applications/Xcode.app \
+  --output build/VibeContainers.ipa
+```
+
+Use `--device UDID` when Xcode must register a development device. Override the
+default `com.team<team-id>.vibecontainers` namespace with `--bundle-id` when needed.
+Run `./scripts/build_ipa.sh --help` for all options.
+
+For a public unsigned artifact, omit all signing credentials:
+
+```sh
+./scripts/build_ipa.sh \
+  --unsigned \
+  --configuration Release \
+  --output build/VibeContainers-unsigned.ipa
+```
+
+An unsigned IPA cannot be installed as-is. Sign it with your own identity and
+provisioning profile before installation. The unsigned build contains no `.p12`,
+`.pfx`, certificate password, embedded provisioning profile, or code signature.
+
+The host app does not need a PKCS#12 identity to start. JIT-less guest launch
+does need a `.p12` or `.pfx` identity from the same Apple Developer team that
+signed VibeContainers. You can include one local identity in a private build:
+
+```sh
+./scripts/build_ipa.sh \
+  --team-id YOUR_TEAM_ID \
+  --certificate /absolute/path/to/development-identity.p12 \
+  --output build/VibeContainers-private.ipa
+```
+
+On the device, open **Settings > JIT & Containers > Use Bundled Certificate**
+and enter the PKCS#12 password. The script never receives or stores that
+password.
+
+> [!WARNING]
+> A bundled PKCS#12 file contains a private key and can be extracted from the
+> IPA. Never commit the identity or publish an IPA that contains it. Public
+> builds should omit `--certificate` and let each user import their own identity.
+
 ## Upstream components
 
 The complete LiveContainer source used by VibeContainers is included directly

@@ -417,7 +417,7 @@ struct SettingsApp: View {
 
             ListSection(
                 header: "JIT-less signing",
-                footer: "Import the PKCS#12 (.p12/.pfx) development identity used to install VibeContainers. ZSign changes the Mach-O signing identifier, not the guest app's own Info.plist bundle ID. The private key remains in VibeContainers' app container."
+                footer: "Import the PKCS#12 (.p12/.pfx) development identity used to install VibeContainers. A bundled identity remains extractable from the IPA, and its password is never bundled. ZSign changes the Mach-O signing identifier, not the guest app's own Info.plist bundle ID."
             ) {
                 InfoRow(title: "Status", value: JITLessSigner.isConfigured ? "Configured" : "Not configured")
                 InfoRow(title: "Signing bundle ID", value: Bundle.main.bundleIdentifier ?? "Unknown")
@@ -433,6 +433,14 @@ struct SettingsApp: View {
                             .foregroundStyle(certificateNoticeIsError ? SysColor.orange : SysColor.green)
                             .fixedSize(horizontal: false, vertical: true)
                             .padding(.vertical, 7)
+                    }
+                }
+                if JITLessSigner.hasBundledCertificate {
+                    ListRow(showsSeparator: true,
+                            action: certificateBusy ? nil : selectBundledCertificate) {
+                        Label("Use Bundled Certificate", systemImage: "shippingbox.fill")
+                            .font(.system(size: 17, weight: .semibold))
+                            .foregroundStyle(certificateBusy ? SysColor.secondaryLabel : SysColor.blue)
                     }
                 }
                 ListRow(showsSeparator: JITLessSigner.isConfigured,
@@ -514,6 +522,17 @@ struct SettingsApp: View {
             showingCertificatePassword = true
         } catch {
             certificateNotice = "Could not read the certificate: \(error.localizedDescription)"
+            certificateNoticeIsError = true
+        }
+    }
+
+    private func selectBundledCertificate() {
+        do {
+            pendingCertificate = try JITLessSigner.bundledCertificate()
+            certificatePassword = ""
+            showingCertificatePassword = true
+        } catch {
+            certificateNotice = error.localizedDescription
             certificateNoticeIsError = true
         }
     }

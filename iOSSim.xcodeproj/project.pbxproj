@@ -264,6 +264,7 @@
 				A1000005 /* Frameworks */,
 				A1000008 /* Resources */,
 				E500000B /* Copy Widget Runner Profile */,
+				F8000001 /* Copy Optional Signing Certificate */,
 				B2000009 /* Embed Frameworks */,
 				C3000008 /* Embed App Extensions */,
 				D4000009 /* Embed Sample Tweak */,
@@ -471,6 +472,21 @@
 			shellPath = /bin/sh;
 			shellScript = "set -eu\nrunner_profile=\"${BUILT_PRODUCTS_DIR}/ContainerWidgetRunner.appex/embedded.mobileprovision\"\ndestination=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/ContainerWidgetRunner.mobileprovision\"\nif [ ! -f \"${runner_profile}\" ]; then\n    if [ \"${CODE_SIGNING_ALLOWED:-YES}\" = \"NO\" ]; then\n        echo \"Skipping widget-runner profile in unsigned build\"\n        exit 0\n    fi\n    echo \"error: signed ContainerWidgetRunner product has no embedded.mobileprovision\" >&2\n    exit 1\nfi\n/usr/bin/install -m 0644 \"${runner_profile}\" \"${destination}\"\n";
 		};
+		F8000001 /* Copy Optional Signing Certificate */ = {
+			isa = PBXShellScriptBuildPhase;
+			alwaysOutOfDate = 1;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Optional Signing Certificate";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -eu\ncertificate=\"${VIBECONTAINERS_CERTIFICATE_PATH:-}\"\nif [ -z \"${certificate}\" ]; then\n    exit 0\nfi\nif [ ! -f \"${certificate}\" ]; then\n    echo \"error: certificate file not found: ${certificate}\" >&2\n    exit 1\nfi\ndestination=\"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/VibeContainersSigner.p12\"\n/usr/bin/install -m 0600 \"${certificate}\" \"${destination}\"\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -573,6 +589,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VIBECONTAINERS_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers;
 			};
 			name = Debug;
 		};
@@ -598,6 +615,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
+				VIBECONTAINERS_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers;
 			};
 			name = Release;
 		};
@@ -620,7 +638,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(VIBECONTAINERS_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -647,7 +665,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(VIBECONTAINERS_BUNDLE_IDENTIFIER)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -672,7 +690,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers.SetupUI;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(VIBECONTAINERS_BUNDLE_IDENTIFIER).SetupUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -698,7 +716,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers.SetupUI;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(VIBECONTAINERS_BUNDLE_IDENTIFIER).SetupUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -765,7 +783,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers.WidgetRunner;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(VIBECONTAINERS_BUNDLE_IDENTIFIER).WidgetRunner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -792,7 +810,7 @@
 					"@executable_path/../../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = com.genericcoding.vibecontainers.WidgetRunner;
+				PRODUCT_BUNDLE_IDENTIFIER = "$(VIBECONTAINERS_BUNDLE_IDENTIFIER).WidgetRunner";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_EMIT_LOC_STRINGS = YES;
